@@ -20,33 +20,47 @@
         />
 
     <Button
-        android:layout_centerHorizontal="true"
         android:id="@+id/add_data_to_database2"
         android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:layout_above="@+id/add_data_to_database"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
-        android:text="Press to see all data of database" />
+        android:background="#FFC107"
+        android:text="see local database" />
 
     <Button
         android:id="@+id/add_data_to_database"
         android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_above="@+id/update_local_database"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
-        android:text="Press to add data to database" />
+        android:background="#4CAF50"
+        android:text="Add/update cloud database" />
 
 
     <Button
         android:id="@+id/update_local_database"
         android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:text="Press to update local database from cloud"
-        android:layout_centerHorizontal="true"/>
+        android:layout_height="75dp"
+        android:layout_above="@+id/delete_data_button"
 
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:background="#03A9F4"
+        android:padding="5dp"
+        android:text="Sync Local database with cloud" />
+
+    <Button
+        android:id="@+id/delete_data_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:background="#F44336"
+        android:text="delete medicine data" />
 
 
 </RelativeLayout>

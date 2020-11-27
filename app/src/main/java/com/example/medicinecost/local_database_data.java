@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.LauncherActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import com.example.medicinecost.DBMS.DBMS;
 
 import java.util.ArrayList;
 
-public class Data_from_local_DB extends AppCompatActivity {
+public class local_database_data extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
@@ -50,7 +50,6 @@ public class Data_from_local_DB extends AppCompatActivity {
         @NonNull
         @Override
         public medicinelistholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            Log.d("set Text",Integer.toString(viewType));
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
             View listItem= layoutInflater.inflate(R.layout.user_single_layout, parent, false);
             return new medicinelistholder(listItem);
@@ -59,7 +58,7 @@ public class Data_from_local_DB extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull medicinelistholder holder, int position) {
             holder.setText(listdata.get(position).getName(),listdata.get(position).getCode(),
-                    listdata.get(position).getDis(),listdata.get(position).getEach(),listdata.get(position).getCost());
+                    listdata.get(position).getDis(),listdata.get(position).getEach(),listdata.get(position).getCost(),position+1);
         }
 
         @Override
@@ -77,8 +76,11 @@ public class Data_from_local_DB extends AppCompatActivity {
                 mView = itemView;
             }
 
-            public void setText(String name, int code, String dis, int each, String cost) {
-                Log.d("set Text",name);
+            public void setText(String name, int code, String dis, int each, String cost,int a) {
+                TextView textView1 = (TextView) mView.findViewById(R.id.textView8);
+                textView1.setText(a+".");
+                TextView textView = (TextView) mView.findViewById(R.id.textView17);
+                textView.setText(Integer.toString(each));
                 TextView text1 = (TextView) mView.findViewById(R.id.textView1);
                 text1.setText(name);
                 TextView text2 = (TextView) mView.findViewById(R.id.textView2);

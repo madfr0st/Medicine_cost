@@ -15,11 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private Layout layout;
     private DatabaseReference medicine_data;
     private DBMS dbms;
-    private ProgressDialog progressDialog;
+    private  ProgressDialog progressDialog;
     private Button local_db;
+    private Button delete_data;
+    private static double count;
+    private static double progress;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +55,15 @@ public class MainActivity extends AppCompatActivity {
         search_button = (Button) layout.findViewById(R.id.search_button);
         update_local_db = (Button) findViewById(R.id.update_local_database);
         insert_data = (Button) findViewById(R.id.add_data_to_database);
+        delete_data = (Button) findViewById(R.id.delete_data_button);
+
         dbms = new DBMS(this);
         progressDialog = new ProgressDialog(this);
 
         local_db.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Data_from_local_DB.class);
+                Intent intent = new Intent(getApplicationContext(), local_database_data.class);
                 startActivity(intent);
             }
         });
@@ -73,23 +84,36 @@ public class MainActivity extends AppCompatActivity {
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Searched.class);
-                startActivity(intent);
+                if(text.getText().length()==0){
+                    Toast.makeText(getApplicationContext(),"Search field is empty!",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), Searched_item.class);
+                    intent.putExtra("string", text.getText().toString());
+                    startActivity(intent);
+                }
             }
         });
 
         update_local_db.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.setMessage("Updating local Database from Cloud");
-                progressDialog.setCancelable(false);
+                count = 0;
+                progressDialog.setCancelable(true);
+                progressDialog.setTitle("Downloading 500KB Data");
+                progressDialog.setMessage("Syncing.....");
                 progressDialog.show();
+                dbms.deleteTable();
                 medicine_data.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                            Medicine medicine = postSnapshot.getValue(Medicine.class);
-
+                        Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
+                        while (iterator.hasNext()){
+                            count++;
+                            progress = count/(double) snapshot.getChildrenCount();
+                            progress = 100*progress;
+                            Log.d("count",progress+"");
+                            Medicine medicine = iterator.next().getValue(Medicine.class);
                             assert medicine != null;
                             dbms.updateContact(medicine.getName(),medicine.getCode(),medicine.getDis(),medicine.getEach(),medicine.getCost());
 
@@ -101,9 +125,19 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+                        progressDialog.cancel();
                         Toast.makeText(MainActivity.this,"Error while syncing",Toast.LENGTH_LONG).show();
                     }
                 });
+
+            }
+        });
+
+        delete_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), deleteActivity.class);
+                startActivity(intent);
             }
         });
 

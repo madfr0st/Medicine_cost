@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="150px"
     android:background="@drawable/background_border"
+
     >
 
     <EditText
@@ -20,19 +21,21 @@
         android:layout_toStartOf="@+id/search_button"
         android:ems="10"
         android:hint="Enter medinine name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColorLink="#000000"
+        android:textSize="20sp" />
 
 
     <Button
         android:id="@+id/search_button"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20px"
         android:layout_marginTop="20px"
         android:layout_marginEnd="20px"
         android:layout_marginBottom="20px"
-        android:background="@color/black"
+        android:background="@color/teal_200"
         android:text="search"
         app:icon="?android:attr/actionModeWebSearchDrawable" />
 </RelativeLayout>

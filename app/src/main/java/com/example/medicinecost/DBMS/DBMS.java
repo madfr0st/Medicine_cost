@@ -99,11 +99,9 @@ public class DBMS extends SQLiteOpenHelper {
         return true;
     }
 
-    public Integer deleteContact (Integer code) {
+    public void deleteTable () {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE,
-                "code = ? ",
-                new String[] { Integer.toString(code) });
+        db.execSQL("delete from "+TABLE);
     }
 
     public ArrayList<Medicine> getAllMeDicine() {

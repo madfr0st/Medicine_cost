@@ -4,16 +4,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/applogo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/applogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicineCost"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Data_from_local_DB"></activity>
+        <activity android:name=".deleteActivity"></activity>
+        <activity android:name=".local_database_data" />
         <activity android:name=".Insert" />
-        <activity android:name=".Searched" />
+        <activity android:name=".Searched_item" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Data_from_local_DB">
+    tools:context=".local_database_data">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view1"

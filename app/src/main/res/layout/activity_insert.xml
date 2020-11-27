@@ -63,11 +63,12 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextTextPersonName5"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
+        android:background="#03DA39"
         android:text="Submit Details" />
 
     <TextView
@@ -82,5 +83,17 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="Note: This will update cloud database only. To update local database, user have to press || SYNC  LOCAL DATABASE WITH CLOUD || button from previous page. If medicine code is unique then it will add new data other wise it will update the data of previous medicine code."
+        android:textAlignment="center"
+        android:textColor="#FF7676"
+        android:textSize="10sp" />
 
 </RelativeLayout>
