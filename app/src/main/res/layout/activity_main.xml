@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:foregroundTint="#00FFFFFF"
+    tools:context=".MainActivity">
+
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/search_top"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_margin="20px"
+        android:layout_alignParentTop="true"
+
+        />
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:id="@+id/add_data_to_database2"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/add_data_to_database"
+        android:layout_marginBottom="25dp"
+        android:text="Press to see all data of database" />
+
+    <Button
+        android:id="@+id/add_data_to_database"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/update_local_database"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="Press to add data to database" />
+
+
+    <Button
+        android:id="@+id/update_local_database"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:text="Press to update local database from cloud"
+        android:layout_centerHorizontal="true"/>
+
+
+
+</RelativeLayout>
