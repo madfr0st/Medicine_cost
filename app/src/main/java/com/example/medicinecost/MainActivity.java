@@ -99,9 +99,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count = 0;
-                progressDialog.setCancelable(true);
+                progressDialog.setCancelable(false);
                 progressDialog.setTitle("Downloading 500KB Data");
-                progressDialog.setMessage("Syncing.....");
+                progressDialog.setMessage("Syncing..... could take 2-3 min based on processor");
+                progressDialog.setProgressStyle(0);
                 progressDialog.show();
                 dbms.deleteTable();
                 medicine_data.addValueEventListener(new ValueEventListener() {
@@ -112,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
                             count++;
                             progress = count/(double) snapshot.getChildrenCount();
                             progress = 100*progress;
-                            Log.d("count",progress+"");
+                            progressDialog.setProgress((int)count);
+                            //Log.d("count",progress+"");
                             Medicine medicine = iterator.next().getValue(Medicine.class);
                             assert medicine != null;
                             dbms.updateContact(medicine.getName(),medicine.getCode(),medicine.getDis(),medicine.getEach(),medicine.getCost());
@@ -132,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         delete_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

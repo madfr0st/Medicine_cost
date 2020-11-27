@@ -62,5 +62,13 @@
         android:background="#F44336"
         android:text="delete medicine data" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
 
 </RelativeLayout>
