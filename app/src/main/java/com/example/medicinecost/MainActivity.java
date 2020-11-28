@@ -34,15 +34,11 @@ public class MainActivity extends AppCompatActivity {
     private Button search_button;
     private Button update_local_db;
     private Button insert_data;
-    private Layout layout;
     private DatabaseReference medicine_data;
     private DBMS dbms;
     private  ProgressDialog progressDialog;
     private Button local_db;
     private Button delete_data;
-    private static double count;
-    private static double progress;
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
         update_local_db.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count = 0;
                 progressDialog.setCancelable(false);
                 progressDialog.setTitle("Downloading 500KB Data");
                 progressDialog.setMessage("Syncing..... could take 2-3 min based on processor");
@@ -110,10 +105,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
                         while (iterator.hasNext()){
-                            count++;
-                            progress = count/(double) snapshot.getChildrenCount();
-                            progress = 100*progress;
-                            progressDialog.setProgress((int)count);
                             //Log.d("count",progress+"");
                             Medicine medicine = iterator.next().getValue(Medicine.class);
                             assert medicine != null;
